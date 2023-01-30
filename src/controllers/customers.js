@@ -1,6 +1,13 @@
 const CustomersModel = require('../models/customers')
 const { crypto } = require('../utils/password')
 
+const defaullTitle = 'Cadastro de Clientes'
+
+function index(req, res){
+    res.render('register', {
+        title: 'Cadastro de Clientes'
+    })
+}
 
 async function  add(req, res){
     const {
@@ -21,11 +28,25 @@ async function  add(req, res){
     })
 
     register.save()
-    res.end('Cadastro realziado!')
+    res.render('register', {
+        title: defaullTitle,
+        message: 'Cadastro realizado com sucesso'
+    })
 }
 
+async function listUsers(req, res){
+
+    const users = await CustomersModel.find()
+
+    res.render('listUsers', {
+        title: 'Listagem de usuários',
+        users,
+    })
+} 
 
 
 module.exports = {
-    add
+    add,
+    index,
+    listUsers,
 }
