@@ -12,7 +12,7 @@ router.get('/', IndexController.index)
 router.get('/register', CustomersController.index)
 router.post('/register/add', CustomersController.add)
 
-//listar
+//listar  
 
 router.get('/list', CustomersController.list)
 
@@ -20,6 +20,10 @@ router.get('/list', CustomersController.list)
 
 router.get('/edit', CustomersController.formEdit)
 router.post('/edit/:id', CustomersController.edit)
+
+
+//remover
+router.get('/remove/:id', CustomersController.remove)
 
 
 module.exports = router
